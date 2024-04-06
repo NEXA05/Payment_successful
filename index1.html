@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXA Payment successfully</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffffff;
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Hide the GIF initially */
+    #gifContainer {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loader"></div>
+
+  <!-- Container for GIF and audio -->
+  <div id="gifContainer">
+    <audio id="audio" autoplay loop>
+      <source src="./paymentsuccesfulsound.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <img id="gif" src="./payment_successful.gif" alt="GIF">
+  </div>
+
+  <script>
+    // Wait for the loader animation to complete
+    setTimeout(function() {
+      // Hide the loader
+      document.querySelector('.loader').style.display = 'none';
+      // Show the GIF and audio after 1 second (4 seconds in total)
+      setTimeout(function() {
+        var audio = document.getElementById('audio');
+        audio.volume += 0.5; // Increase volume by 50%
+        document.getElementById('gifContainer').style.display = 'block';
+        // Redirect to a link after 2 seconds (6 seconds in total)
+        setTimeout(function() {
+          window.location.href = 'https://www.youtube.com/'; // Change the link URL accordingly
+        }, 2000);
+      }, 1000);
+    }, 3000); // 3000 milliseconds = 3 seconds
+  </script>
+</body>
+
+</html>
